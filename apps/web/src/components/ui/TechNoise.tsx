@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useState } from 'react';
 
 interface TechNoiseProps {
   brackets?: number;
@@ -13,49 +13,52 @@ type NoiseItem =
   | { type: 'dot'; x: number; y: number }
   | { type: 'scanline'; width: number; y: number };
 
+// Generate random items once on mount, not during render
+function generateNoiseItems(crosses: number, dots: number, brackets: number, scanLines: number): NoiseItem[] {
+  const xs: NoiseItem[] = [];
+
+  // crosses
+  for (let i = 0; i < crosses; i++) {
+    xs.push({
+      type: 'cross',
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+    });
+  }
+
+  // dots
+  for (let d = 0; d < dots; d++) {
+    xs.push({
+      type: 'dot',
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+    });
+  }
+
+  // brackets (corner markers)
+  for (let b = 0; b < brackets; b++) {
+    xs.push({
+      type: 'bracket',
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      corner: Math.floor(Math.random() * 4), // 0: TL, 1: TR, 2: BR, 3: BL
+    });
+  }
+
+  // scan lines
+  for (let s = 0; s < scanLines; s++) {
+    xs.push({
+      type: 'scanline',
+      y: Math.random() * 100,
+      width: 20 + Math.random() * 40, // random width between 20-60%
+    });
+  }
+
+  return xs;
+}
+
 export const TechNoise = ({ crosses = 5, dots = 30, brackets = 8, scanLines = 12 }: TechNoiseProps) => {
-  const items = useMemo<NoiseItem[]>(() => {
-    const xs: NoiseItem[] = [];
-
-    // crosses
-    for (let i = 0; i < crosses; i++) {
-      xs.push({
-        type: 'cross',
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-      });
-    }
-
-    // dots
-    for (let d = 0; d < dots; d++) {
-      xs.push({
-        type: 'dot',
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-      });
-    }
-
-    // brackets (corner markers)
-    for (let b = 0; b < brackets; b++) {
-      xs.push({
-        type: 'bracket',
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        corner: Math.floor(Math.random() * 4), // 0: TL, 1: TR, 2: BR, 3: BL
-      });
-    }
-
-    // scan lines
-    for (let s = 0; s < scanLines; s++) {
-      xs.push({
-        type: 'scanline',
-        y: Math.random() * 100,
-        width: 20 + Math.random() * 40, // random width between 20-60%
-      });
-    }
-
-    return xs;
-  }, [crosses, dots, brackets, scanLines]);
+  const [items] = useState<NoiseItem[]>(() => generateNoiseItems(crosses, dots, brackets, scanLines));
 
   return (
     <svg className="pointer-events-none absolute inset-0 z-20" width="100%" height="100%" preserveAspectRatio="none">

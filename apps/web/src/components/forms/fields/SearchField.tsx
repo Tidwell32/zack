@@ -59,7 +59,10 @@ export const SearchField = <T,>({
   }, []);
 
   useEffect(() => {
-    setSelectedIndex(-1);
+    // Reset selected index when options change (e.g., from search filtering)
+    queueMicrotask(() => {
+      setSelectedIndex(-1);
+    });
   }, [options]);
 
   const handleInputChange = (newValue: string) => {

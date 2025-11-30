@@ -66,7 +66,9 @@ export const RoundsLineChart = () => {
   );
 
   useEffect(() => {
-    setSelectedCourses(courses.map((course) => course.id));
+    queueMicrotask(() => {
+      setSelectedCourses(courses.map((course) => course.id));
+    });
   }, [courses]);
 
   return (

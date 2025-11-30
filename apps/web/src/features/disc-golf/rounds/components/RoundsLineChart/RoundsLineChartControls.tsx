@@ -5,8 +5,8 @@ import { CheckboxField } from '@/components/forms/fields/CheckboxField';
 import { MultiSelectField } from '@/components/forms/fields/MultiSelectField';
 import { Button, Popover, Typography } from '@/components/ui';
 import { usePlayers } from '@/data-access/udisc/udisc.queries';
-import { useTypedLoaderData } from '@/hooks/useTypedLoaderData';
 import type { RoundsLoaderData } from '@/features/disc-golf/rounds/rounds.loader';
+import { useTypedLoaderData } from '@/hooks/useTypedLoaderData';
 
 interface RoundsLineChartControlsProps {
   courses: Array<{ id: string; name: string }>;

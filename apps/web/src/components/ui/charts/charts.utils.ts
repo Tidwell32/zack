@@ -7,11 +7,9 @@ export const axisProps = {
   stroke: CHART_COLORS.axis,
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const makeAxisLabel = (
   value?: string,
   opts: { angle?: number; offset?: number; position?: string } = {}
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): any =>
   value
     ? ({
@@ -20,6 +18,5 @@ export const makeAxisLabel = (
         style: { textAnchor: 'middle' },
         ...opts,
         // gross any cast but it's recharts fault!
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any)
     : undefined;

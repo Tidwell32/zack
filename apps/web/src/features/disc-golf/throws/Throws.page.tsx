@@ -3,6 +3,7 @@ import { Await } from 'react-router';
 
 import { SelectField } from '@/components/forms';
 import { ClippedButton, ClippedDialog, CsvImportCard, Typography } from '@/components/ui';
+import { DialogDescription, DialogTitle, VisuallyHidden } from '@/components/ui/ClippedDialog';
 import { useImportTechDiscCsv } from '@/data-access/techdisc';
 import { useTypedLoaderData } from '@/hooks';
 import type { Handedness, Throw } from '@/types';
@@ -56,11 +57,16 @@ export const Throws = () => {
               }}
             >
               <div className="flex flex-col gap-4 p-4">
-                <Typography variant="monoStat">
-                  Hey fellow ambi-thrower! TechDisc does not include handedness in their csv export, so for this to
-                  accurately capture your throws, you must tag each throw as right and left. Yeah it's annoying, sorry.
-                </Typography>
-
+                <VisuallyHidden>
+                  <DialogTitle>Ambidextrous Handedness Warning</DialogTitle>
+                </VisuallyHidden>
+                <DialogDescription asChild>
+                  <Typography variant="monoStat">
+                    Hey fellow ambi-thrower! TechDisc does not include handedness in their csv export, so for this to
+                    accurately capture your throws, you must tag each throw as right and left. Yeah it's annoying,
+                    sorry.
+                  </Typography>
+                </DialogDescription>
                 <ClippedButton
                   onClick={() => {
                     setShowWarning(false);
