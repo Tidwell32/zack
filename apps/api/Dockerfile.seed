@@ -1,0 +1,16 @@
+FROM golang:1.23-alpine
+
+WORKDIR /app
+
+# Copy go mod files
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Copy source code
+COPY . .
+
+# Build the seed binary
+RUN go build -o seed ./cmd/seed/main.go
+
+# Run the seed command
+CMD ["./seed"]
