@@ -1,0 +1,11 @@
+export { ChevronsRight } from './ChevronsRight';
+export { CirclePlusIcon } from './CirclePlusIcon';
+export { ColumnsIcon } from './ColumnsIcon';
+export { EditIcon } from './EditIcon';
+export { FilterIcon } from './FilterIcon';
+export { GitHubIcon } from './GitHubIcon';
+export { LinkedInIcon } from './LinkedInIcon';
+export { MailIcon } from './MailIcon';
+export { RotatePhoneIcon } from './RotatePhoneIcon';
+export { SlidersIcon } from './SlidersIcon';
+export { TrashIcon } from './TrashIcon';

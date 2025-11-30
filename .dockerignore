@@ -1,0 +1,36 @@
+# Git
+
+.git
+.gitignore
+.github
+
+# Node
+
+node_modules
+dist
+dist-ssr
+.build
+\*.local
+.vite
+
+# Documentation
+
+\*.md
+!README.md
+
+# Environment
+
+.env
+.env.\*
+!.env.example
+!.env.docker.example
+
+# IDE
+
+.vscode
+.idea
+.DS_Store
+
+# Contexts
+
+contexts/

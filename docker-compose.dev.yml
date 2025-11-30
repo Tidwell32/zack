@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  # Override API for development with hot reload
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile.dev.local
+    volumes:
+      # Mount source code for hot reload
+      - ./apps/api:/app
+      # Exclude tmp directory (build artifacts)
+      - /app/tmp
+    environment:
+      # Development-specific settings
+      ENV: development

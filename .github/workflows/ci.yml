@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main, staging]
+  pull_request:
+    branches: [main, staging]
+
+jobs:
+  frontend:
+    name: Frontend (Lint, Build, Test)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm --filter @zack/web lint
+
+      - name: Type check and build
+        run: pnpm --filter @zack/web build
+
+      - name: Run tests
+        run: pnpm --filter @zack/web test --if-present
+
+  backend:
+    name: Backend (Build, Test)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: "1.23"
+          cache-dependency-path: apps/api/go.sum
+
+      - name: Install dependencies
+        working-directory: ./apps/api
+        run: go mod download
+
+      - name: Run tests
+        working-directory: ./apps/api
+        run: go test ./... -v
+
+      - name: Build
+        working-directory: ./apps/api
+        run: go build -o bin/server ./main.go

@@ -1,0 +1,66 @@
+version: "3.9"
+
+services:
+  # MongoDB local instance
+  mongo:
+    image: mongo:7
+    container_name: zack-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: zack
+    networks:
+      - zack-network
+
+  # Go API
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile.local
+    container_name: zack-api
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    env_file:
+      - ./apps/api/.env
+    environment:
+      PORT: 8080
+      ENV: development
+      ALLOWED_ORIGIN: http://localhost:5173
+      MONGODB_URI: mongodb://mongo:27017/zack
+      MONGODB_DATABASE: zack
+    ports:
+      - "8080:8080"
+    networks:
+      - zack-network
+
+  # Optional: Web app (can run locally via pnpm instead)
+  # Uncomment if you want to containerize the frontend too
+  # web:
+  #   build:
+  #     context: .
+  #     dockerfile: apps/web/Dockerfile
+  #   container_name: zack-web
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - api
+  #   environment:
+  #     VITE_API_URL: http://localhost:8080
+  #   ports:
+  #     - "5173:5173"
+  #   volumes:
+  #     - ./apps/web:/app/apps/web
+  #     - /app/node_modules
+  #   networks:
+  #     - zack-network
+
+volumes:
+  mongo_data:
+    driver: local
+
+networks:
+  zack-network:
+    driver: bridge

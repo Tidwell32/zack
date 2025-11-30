@@ -1,0 +1,12 @@
+import type { HTMLAttributes } from 'react';
+import { forwardRef } from 'react';
+
+import { cn } from '@/utils';
+
+type TableBodyProps = HTMLAttributes<HTMLTableSectionElement>;
+
+export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(({ className, ...props }, ref) => {
+  return <tbody ref={ref} className={cn('[&_tr:last-child]:border-0', className)} {...props} />;
+});
+
+TableBody.displayName = 'TableBody';

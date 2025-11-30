@@ -1,0 +1,47 @@
+version: 2
+updates:
+  # Frontend dependencies (pnpm workspace)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10
+    groups:
+      # Group TanStack packages together
+      tanstack:
+        patterns:
+          - "@tanstack/*"
+      # Group React core packages
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      # Group ESLint packages
+      eslint:
+        patterns:
+          - "eslint*"
+          - "@eslint/*"
+      # Group Tailwind packages
+      tailwind:
+        patterns:
+          - "tailwind*"
+          - "@tailwindcss/*"
+
+  # Backend dependencies (Go modules)
+  - package-ecosystem: "gomod"
+    directory: "/apps/api"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
