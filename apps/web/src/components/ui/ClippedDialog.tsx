@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
+import * as VisuallyHiddenPrimitive from '@radix-ui/react-visually-hidden';
 
 import { useClippedShape } from '@/hooks';
 import type { ClipSize } from '@/types';
@@ -77,3 +78,9 @@ export const ClippedDialog = ({ open, onOpenChange, ...contentProps }: ClippedDi
 
 export const DialogTitle = DialogPrimitive.Title;
 export const DialogDescription = DialogPrimitive.Description;
+
+const VisuallyHiddenRoot = VisuallyHiddenPrimitive.Root as FC<{ children: ReactNode }>;
+
+export const VisuallyHidden = ({ children }: { children: ReactNode }) => {
+  return <VisuallyHiddenRoot>{children}</VisuallyHiddenRoot>;
+};
