@@ -1,0 +1,25 @@
+# Git
+.git
+.gitignore
+
+# Binaries
+bin/
+*.exe
+
+# Development
+.env
+.env.*
+!.env.example
+tmp/
+build-errors.log
+Dockerfile.dev
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+
+# Contexts
+contexts/

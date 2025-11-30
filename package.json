@@ -1,29 +1,18 @@
 {
-  "name": "vite-react",
+  "name": "zack-monorepo",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@9.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "dev:web": "pnpm --filter @zack/web dev",
+    "build:web": "pnpm --filter @zack/web build",
+    "lint:web": "pnpm --filter @zack/web lint",
+    "test:web": "pnpm --filter @zack/web test --if-present",
+    "seed": "cd apps/api && go run cmd/seed/main.go",
+    "reseed": "cd apps/api && CONFIRM_RESEED=yes go run cmd/reseed/main.go"
   },
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.9.0",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^9.9.0",
-    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
-    "eslint-plugin-react-refresh": "^0.4.9",
-    "globals": "^15.9.0",
-    "typescript": "^5.5.3",
-    "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1"
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
   }
 }
