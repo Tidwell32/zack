@@ -15,7 +15,7 @@ const variantClasses: Record<Variant, string> = {
   h1: 'text-xl md:text-2xl font-semibold',
   h2: 'text-lg md:text-xl font-semibold',
   h3: 'text-base md:text-lg font-semibold',
-  body: 'text-sm md:sm font-normal',
+  body: 'text-sm font-normal',
   'body-sm': 'text-[.75em] md:text-xs font-normal',
   eyebrow: 'text-xs tracking-[0.18em] uppercase font-medium text-accentTeal-80',
   button: 'text-sm md:text-md font-semibold',

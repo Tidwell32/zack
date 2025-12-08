@@ -1,4 +1,4 @@
-export { ChevronsRight } from './ChevronsRight';
+export { ChevronsRightIcon } from './ChevronsRightIcon';
 export { CirclePlusIcon } from './CirclePlusIcon';
 export { ColumnsIcon } from './ColumnsIcon';
 export { EditIcon } from './EditIcon';
@@ -9,3 +9,4 @@ export { MailIcon } from './MailIcon';
 export { RotatePhoneIcon } from './RotatePhoneIcon';
 export { SlidersIcon } from './SlidersIcon';
 export { TrashIcon } from './TrashIcon';
+export { TriangleAlertIcon } from './TriangleAlertIcon';

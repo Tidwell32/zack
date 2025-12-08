@@ -20,7 +20,7 @@ export const HomeLayout = () => {
       <div className="flex flex-col min-h-full">
         <div>
           <div className="flex flex-col float-left h-full mr-4">
-            <ClippedCard borderWidth={2} variant="layered" className="flex aspect-square h-40 mb-4 float-left">
+            <ClippedCard borderWidth={2} variant="layered" className="z-0 flex aspect-square h-40 mb-4 float-left">
               <img src={MeImage} alt="Profile" className="h-full w-auto object-cover mx-auto mt-1 md:mt-2.5" />
             </ClippedCard>
             <NavTabs

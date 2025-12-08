@@ -16,10 +16,13 @@ import {
 import { Gym } from '@/features/gym';
 import { About, Playground, Projects } from '@/features/home';
 
+import { ErrorBoundary } from './features/error-boundary';
+
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    errorElement: <ErrorBoundary />,
     children: [
       {
         path: '/',

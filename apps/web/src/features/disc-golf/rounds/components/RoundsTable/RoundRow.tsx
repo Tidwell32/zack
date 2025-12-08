@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { ChevronsRight } from '@/components/icons';
+import { ChevronsRightIcon } from '@/components/icons';
 import { TableCell, TableRow, Typography } from '@/components/ui';
 import type { Round } from '@/types';
 import { cn, formatDate } from '@/utils';
@@ -168,7 +168,7 @@ export const RoundRow = ({
             }}
           >
             <div className="flex flex-row gap-2 items-center">
-              <ChevronsRight className="group-open:rotate-90 transition-transform stroke-primary group-open:stroke-secondary" />
+              <ChevronsRightIcon className="group-open:rotate-90 transition-transform stroke-primary group-open:stroke-secondary" />
 
               <Typography className="md:text-xs">{round.courseName}</Typography>
               <Typography className="md:text-xxs text-text-muted mr-auto">{round.layoutName}</Typography>
