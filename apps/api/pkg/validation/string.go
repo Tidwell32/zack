@@ -22,11 +22,11 @@ func ToHTTPMessage(err error) string {
 }
 
 type StringRules struct {
-	Field        string
-	Required     bool
-	MinLen       int
-	MaxLen       int
-	Trim         bool
+	Field         string
+	Required      bool
+	MinLen        int
+	MaxLen        int
+	Trim          bool
 	AllowedValues []string
 }
 

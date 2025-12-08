@@ -9,10 +9,10 @@ import (
 type PlayerScore struct {
 	PlayerName string `bson:"playerName" json:"playerName"`
 
-	Total         *int   `bson:"total,omitempty" json:"total,omitempty"`
-	PlusMinus     string `bson:"plusMinus,omitempty" json:"plusMinus,omitempty"`
-	PlusMinusInt  int    `bson:"plusMinusInt" json:"plusMinusInt"`
-	RoundRating   *int   `bson:"roundRating,omitempty" json:"roundRating,omitempty"`
+	Total        *int   `bson:"total,omitempty" json:"total,omitempty"`
+	PlusMinus    string `bson:"plusMinus,omitempty" json:"plusMinus,omitempty"`
+	PlusMinusInt int    `bson:"plusMinusInt" json:"plusMinusInt"`
+	RoundRating  *int   `bson:"roundRating,omitempty" json:"roundRating,omitempty"`
 
 	Scores     []int `bson:"scores" json:"scores"`
 	HoleCount  int   `bson:"holeCount" json:"holeCount"`

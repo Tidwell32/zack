@@ -7,6 +7,7 @@ A full-stack TypeScript monorepo featuring a React frontend and Go API backend, 
 The application currently includes:
 
 - **Disc Golf Tracker** - Tracks my discs and visualizes techdisc and uDisc data. Hopefully showing a general trend of me getting better.
+- **What's For Dinner** - A recipe merger that searches the web for recipes, uses AI to rank and select the best ones, then merges them into a single optimized recipe with allergen substitutions and variation suggestions.
 
 Will definitely one day include:
 
@@ -15,9 +16,8 @@ Will definitely one day include:
 
 Will maybe one day include:
 
-- **Cooking** - Maybe some recipe management thing. Or perhaps an app to search through various recipe APIs and remove all the fluff.
 - **Music** - Do something fun with the Spotify API. Maybe let people compare their music tastes to mine and each other.
-- **Music** - Something similar to the above, maybe a suggestions interface.
+- **Reading** - Something similar to the above, maybe a suggestions interface.
 
 ## Tech Stack
 
