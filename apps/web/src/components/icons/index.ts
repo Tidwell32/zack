@@ -9,3 +9,4 @@ export { MailIcon } from './MailIcon';
 export { RotatePhoneIcon } from './RotatePhoneIcon';
 export { SlidersIcon } from './SlidersIcon';
 export { TrashIcon } from './TrashIcon';
+export { TriangleAlert } from './TriangleAlert';

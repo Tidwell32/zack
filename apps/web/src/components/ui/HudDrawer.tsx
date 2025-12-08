@@ -8,12 +8,21 @@ import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger }
 import { Typography } from './Typography';
 
 type HudDrawerProps = ComponentProps<typeof DrawerRoot> & {
+  blur?: 'sm' | 'xs' | 'xxs';
   contentClassName?: string;
   title?: string;
   trigger?: ReactNode;
 };
 
-export const HudDrawer = ({ trigger, title, children, contentClassName, onOpenChange, ...props }: HudDrawerProps) => {
+export const HudDrawer = ({
+  blur = 'xxs',
+  trigger,
+  title,
+  children,
+  contentClassName,
+  onOpenChange,
+  ...props
+}: HudDrawerProps) => {
   const isSmall = useMediaQuery('mobile', 'max');
 
   const handleOpenChange = (open: boolean) => {
@@ -27,7 +36,7 @@ export const HudDrawer = ({ trigger, title, children, contentClassName, onOpenCh
       <DrawerPortal>
         <DrawerOverlay
           className={cn(
-            'fixed inset-0 z-40 backdrop-blur-xxs',
+            `fixed inset-0 z-40 backdrop-blur-${blur}`,
             "before:absolute before:inset-0 before:pointer-events-none before:content-['']",
             'before:bg-[radial-gradient(circle_at_bottom,rgba(56,189,248,0.20),transparent_65%)]'
           )}
