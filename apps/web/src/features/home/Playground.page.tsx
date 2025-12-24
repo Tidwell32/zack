@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 
-import { BasketImage, GymImage, HoleImage, PastaImage } from '@/assets';
+import { CookingImage, DiscGolfImage, GolfImage, GymImage } from '@/assets';
 import { ClippedButton, ClippedCard, SectionDivider, Typography } from '@/components/ui';
 import { COLORS } from '@/utils';
 
@@ -20,7 +20,7 @@ export const Playground = () => {
           <div className="flex flex-col md:flex-row gap-4 mb-4">
             <ClippedCard borderWidth={2} clipSize="lg" className="flex-1 md:max-w-64">
               <div className="flex flex-col h-full">
-                <img src={BasketImage} alt="Basket" className="h-20 w-auto mx-auto" />
+                <img src={DiscGolfImage} alt="Basket" className="h-20 w-auto mx-auto" />
                 <Typography variant="h1" className="text-primary mt-4">
                   DISC GOLF
                 </Typography>
@@ -42,14 +42,14 @@ export const Playground = () => {
               <div className="flex flex-col h-full">
                 <img src={GymImage} alt="Gym" className="h-20 w-auto mx-auto" />
                 <Typography variant="h1" className="text-primary mt-4">
-                  GETTIN' BIG
+                  GYM TRACKER
                 </Typography>
                 <Typography variant="monoStat" className="mb-4">
                   A dashboard to log workouts, visualize progression, and store form videos.
                 </Typography>
                 <Link to="/playground/gym" className="mt-auto">
                   <ClippedButton className="w-full" color="secondary">
-                    PUMP
+                    TRACK
                   </ClippedButton>
                 </Link>
               </div>
@@ -60,7 +60,7 @@ export const Playground = () => {
           <div className="flex flex-col md:flex-row gap-4">
             <ClippedCard borderWidth={2} clipSize="lg" className="flex-1 md:max-w-64">
               <div className="flex flex-col h-full">
-                <img src={HoleImage} alt="Golf" className="h-20 w-auto mx-auto" />
+                <img src={GolfImage} alt="Golf" className="h-20 w-auto mx-auto" />
                 <Typography variant="h1" className="text-primary mt-4">
                   "BALL" GOLF
                 </Typography>
@@ -77,7 +77,7 @@ export const Playground = () => {
 
             <ClippedCard borderWidth={2} clipSize="lg" className="flex-1 md:max-w-64">
               <div className="flex flex-col h-full">
-                <img src={PastaImage} alt="Pasta" className="h-20 w-auto mx-auto" />
+                <img src={CookingImage} alt="Cooking" className="h-20 w-auto mx-auto" />
                 <Typography variant="h1" className="text-primary mt-4">
                   COOKING
                 </Typography>
