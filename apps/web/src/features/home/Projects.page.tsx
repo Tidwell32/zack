@@ -29,25 +29,25 @@ export const Projects = () => {
                 <img src={CrmImage} alt="CRM" className="object-cover mx-auto" />
               </ClippedCard>
               <Typography variant="h1" className="text-secondary text-start">
-                CRM
+                Retouch CRM
               </Typography>
               <Typography variant="monoStat" className="text-start">
-                This was my second major project, which was completely rewritten a few years ago. It's a CRM designed to
-                a client's specs (shout out to my Dad!). It is designed to be easy to navigate, map out contacts, and
-                has a very powerful search function. He's been using it daily for years and is consistently the top
-                salesperson at his companies &#128540;. There are test credentials to try it out yourself! (not yet
-                mobile friendly)
+                This solo project is a CRM designed for the individual salesperson. It strips away the complicated
+                dashboards and admin overhead of tools like Salesforce in favor of a single workflow: who haven't I
+                talked to, and who should I reach out to next. It centers on powerful discoverability, touch-cadence
+                tracking, map-based visit planning, and an algorithm-driven hit list that surfaces overdue,
+                high-priority contacts. Use the demo credentials to check it out.
               </Typography>
               <Typography variant="monoStat" className="text-primary my-4 clear-both">
-                React | React Query | NestJs | Tailwind
+                React | Tanstack Query | Tailwind | Fastify | Postgres
               </Typography>
-              <a href="https://app.asimplercrm.com/" target="_blank" rel="noopener noreferrer" className="mt-auto">
+              <a href="https://retouchcrm.app/" target="_blank" rel="noopener noreferrer" className="mt-auto">
                 <ClippedButton className="w-full md:w-64" color="secondary">
                   EXPLORE
                 </ClippedButton>
               </a>
               <Typography variant="monoStat" className="mt-4">
-                test@example.com // WeShouldHireThisGuy
+                hello+demo@tidwellmade.com // Retouch~Demo
               </Typography>
             </ClippedCard>
           </div>
@@ -66,15 +66,17 @@ export const Projects = () => {
                 STONKS
               </Typography>
               <Typography variant="monoStat" className="text-start">
+                Update (6/2/2026): It appears MongoDb destroyed my database, oh well, RIP.
+              </Typography>
+              <Typography variant="monoStat" className="text-start">
                 This was a silly project during the Gamestop meme stock era. It originally involved a Python web scraper
                 that scraped the wallstreetbets subreddit and tracked every stock ticker that was mentioned. It then
                 displayed those mentions in a number of different ways in an attempt to capture stocks that were gaining
                 traction, theoretically, before they became memes. The APIs no longer work, so I "froze" the website for
-                January 2023 data. It's pretty fun, have a look. (also not super mobile friendly, apparently I didn't
-                care about that years ago)
+                January 2023 data. It's pretty fun, have a look (not super mobile friendly).
               </Typography>
               <Typography variant="monoStat" className="text-primary my-4 clear-both">
-                React | GraphQL | NextJS | Python | Recharts
+                React | GraphQL | NextJS | Python | Recharts | MongoDB
               </Typography>
               <a href="https://wsb-data.vercel.app/" target="_blank" rel="noopener noreferrer" className="mt-auto">
                 <ClippedButton className="w-full md:w-64" color="secondary">
