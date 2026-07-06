@@ -6,20 +6,31 @@ import (
 	"github.com/Tidwell32/zack/apps/api/internal/config"
 	"github.com/Tidwell32/zack/apps/api/internal/database"
 	"github.com/Tidwell32/zack/apps/api/internal/handlers"
+	"github.com/Tidwell32/zack/apps/api/internal/llm"
 	"github.com/Tidwell32/zack/apps/api/internal/middleware"
 	"github.com/Tidwell32/zack/apps/api/internal/repository"
 	"github.com/Tidwell32/zack/apps/api/internal/services"
+	cooking "github.com/Tidwell32/zack/apps/api/internal/services/cooking"
 )
 
 type App struct {
-	Config *config.Config
-	DB     *database.MongoDB
+	Config   *config.Config
+	DB       *database.MongoDB
+	jobStore *cooking.JobStore
 }
 
 func New(cfg *config.Config, db *database.MongoDB) *App {
 	return &App{
-		Config: cfg,
-		DB:     db,
+		Config:   cfg,
+		DB:       db,
+		jobStore: cooking.NewJobStore(),
+	}
+}
+
+// Gracefully shuts down background services
+func (a *App) Shutdown() {
+	if a.jobStore != nil {
+		a.jobStore.Shutdown()
 	}
 }
 func (a *App) Routes() http.Handler {
@@ -46,6 +57,18 @@ func (a *App) Routes() http.Handler {
 	udiscRepo := repository.NewMongoUDiscRepository(udiscRoundsCollection)
 	udiscService := services.NewUDiscService(udiscRepo)
 
+	searchService := cooking.NewSearchService(
+		a.Config.GoogleSearchAPIKey,
+		a.Config.GoogleSearchEngineID,
+	)
+	scraperService := cooking.NewScraperService()
+	llmProvider := llm.NewOpenAIProvider(a.Config.OpenAIAPIKey)
+	recipeMergerService := cooking.NewRecipeMergerService(
+		llmProvider,
+		searchService,
+		scraperService,
+	)
+
 	health := handlers.NewHealthHandler()
 	auth := handlers.NewAuthHandler(a.Config, authService)
 	bags := handlers.NewBagHandler(a.Config, bagService)
@@ -53,6 +76,7 @@ func (a *App) Routes() http.Handler {
 	catalog := handlers.NewCatalogHandler(catalogRepo)
 	techDisc := handlers.NewTechDiscHandler(a.Config, techDiscService)
 	udisc := handlers.NewUDiscHandler(a.Config, udiscService)
+	cookingHandler := handlers.NewCookingHandler(a.Config, recipeMergerService, a.jobStore)
 
 	mux.HandleFunc("GET /health", health.Handle)
 
@@ -82,6 +106,9 @@ func (a *App) Routes() http.Handler {
 	mux.HandleFunc("GET /udisc/rounds", udisc.GetRounds)
 	mux.HandleFunc("GET /udisc/players", udisc.GetPlayers)
 	mux.HandleFunc("GET /udisc/courses", udisc.GetCourses)
+
+	mux.HandleFunc("POST /cooking/whats-for-dinner/merge", cookingHandler.MergeRecipe)
+	mux.HandleFunc("GET /cooking/whats-for-dinner/merge/{jobId}/status", cookingHandler.GetJobStatus)
 
 	handler := middleware.AuthMiddleware(a.Config, authService, mux)
 	handler = middleware.CORSMiddleware(a.Config, handler)

@@ -13,13 +13,17 @@ type Config struct {
 	MongoDatabase string
 	Environment   string
 
-	AuthTOTPSecret   string
-	AuthJWTSecret    string
-	AuthBypassCode   string
-	OwnerUserID      string
+	AuthTOTPSecret string
+	AuthJWTSecret  string
+	AuthBypassCode string
+	OwnerUserID    string
 
 	AllowedOrigin string
 	CookieDomain  string
+
+	OpenAIAPIKey         string
+	GoogleSearchAPIKey   string
+	GoogleSearchEngineID string
 
 	// Seeding
 	ForceReseed bool
@@ -41,6 +45,10 @@ func Load() (*Config, error) {
 
 		AllowedOrigin: getEnv("ALLOWED_ORIGIN", "http://localhost:5173"),
 		CookieDomain:  getEnv("COOKIE_DOMAIN", ""),
+
+		OpenAIAPIKey:         getEnv("OPEN_AI_API_KEY", ""),
+		GoogleSearchAPIKey:   getEnv("GOOGLE_SEARCH_API_KEY", ""),
+		GoogleSearchEngineID: getEnv("GOOGLE_SEARCH_ENGINE_ID", ""),
 
 		ForceReseed: getEnv("FORCE_RESEED", "") == "true",
 	}

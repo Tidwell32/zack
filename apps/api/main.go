@@ -85,5 +85,8 @@ func main() {
 		log.Fatalf("server forced to shutdown: %v", err)
 	}
 
+	// Shutdown background services
+	application.Shutdown()
+
 	log.Println("Server exited gracefully")
 }
